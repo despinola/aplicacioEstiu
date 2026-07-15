@@ -89,6 +89,7 @@ private fun easyMove(board: List<TttCell>): Int {
     return if ((0..9).random() < 6) empty.random() else bestMove(board)
 }
 
+@OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
 fun TicTacToeGame(onGameComplete: (Int) -> Unit) {
     var board by remember { mutableStateOf(List(9) { TttCell.EMPTY }) }
