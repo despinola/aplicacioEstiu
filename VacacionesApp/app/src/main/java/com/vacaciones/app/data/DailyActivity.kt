@@ -16,5 +16,6 @@ data class DailyActivity(
     val hasSwimmed: Boolean = false,
     val notes: String = "",
     val gameCompleted: Boolean = false,
-    val gameScore: Int = 0
+    val gameScore: Int = 0,
+    val photoUri: String = ""
 )

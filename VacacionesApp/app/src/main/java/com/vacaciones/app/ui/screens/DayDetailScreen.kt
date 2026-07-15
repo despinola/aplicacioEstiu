@@ -184,6 +184,18 @@ fun DayDetailScreen(
                 }
             }
 
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Photo section
+            currentActivity?.let { activity ->
+                PhotoSection(
+                    photoUri = activity.photoUri,
+                    userName = currentUser?.name ?: "user",
+                    day = day,
+                    onPhotoSaved = { uri -> viewModel.updateActivity(photoUri = uri) }
+                )
+            }
+
             Spacer(modifier = Modifier.height(32.dp))
         }
     }

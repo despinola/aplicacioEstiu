@@ -59,7 +59,8 @@ class AppViewModel(private val repository: AppRepository) : ViewModel() {
         hasSwimmed: Boolean? = null,
         notes: String? = null,
         gameCompleted: Boolean? = null,
-        gameScore: Int? = null
+        gameScore: Int? = null,
+        photoUri: String? = null
     ) {
         viewModelScope.launch {
             _currentActivity.value?.let { activity ->
@@ -70,7 +71,8 @@ class AppViewModel(private val repository: AppRepository) : ViewModel() {
                     hasSwimmed = hasSwimmed ?: activity.hasSwimmed,
                     notes = notes ?: activity.notes,
                     gameCompleted = gameCompleted ?: activity.gameCompleted,
-                    gameScore = gameScore ?: activity.gameScore
+                    gameScore = gameScore ?: activity.gameScore,
+                    photoUri = photoUri ?: activity.photoUri
                 )
                 repository.insertOrUpdateActivity(updated)
                 _currentActivity.value = updated
