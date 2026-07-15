@@ -80,10 +80,7 @@ fun SortNumbersGame(onGameComplete: (Int) -> Unit) {
     PlaceholderGame("📊 Ordena Números", "Del menor al mayor", onGameComplete)
 }
 
-@Composable
-fun TicTacToeGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("❌⭕ Tres en Raya", "Juega contra la IA", onGameComplete)
-}
+// TicTacToeGame està implementat a TicTacToeGame.kt
 
 @Composable
 fun RiddlesGame(onGameComplete: (Int) -> Unit) {
