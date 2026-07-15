@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 
-private enum class Cell { EMPTY, X, O }
+private enum class TttCell { EMPTY, X, O }
 private enum class GameState { PLAYING, WIN_X, WIN_O, DRAW }
 private enum class Difficulty { EASY, HARD }
 
@@ -30,68 +30,68 @@ private val WIN_LINES = listOf(
     listOf(0, 4, 8), listOf(2, 4, 6)                   // diagonals
 )
 
-private fun checkWinner(board: List<Cell>): Cell {
+private fun checkWinner(board: List<TttCell>): TttCell {
     for (line in WIN_LINES) {
         val v = board[line[0]]
-        if (v != Cell.EMPTY && line.all { board[it] == v }) return v
+        if (v != TttCell.EMPTY && line.all { board[it] == v }) return v
     }
-    return Cell.EMPTY
+    return TttCell.EMPTY
 }
 
-private fun gameState(board: List<Cell>): GameState {
+private fun gameState(board: List<TttCell>): GameState {
     return when (checkWinner(board)) {
-        Cell.X -> GameState.WIN_X
-        Cell.O -> GameState.WIN_O
-        else -> if (board.none { it == Cell.EMPTY }) GameState.DRAW else GameState.PLAYING
+        TttCell.X -> GameState.WIN_X
+        TttCell.O -> GameState.WIN_O
+        else -> if (board.none { it == TttCell.EMPTY }) GameState.DRAW else GameState.PLAYING
     }
 }
 
-private fun winLine(board: List<Cell>): List<Int>? =
+private fun winLine(board: List<TttCell>): List<Int>? =
     WIN_LINES.firstOrNull { line ->
         val v = board[line[0]]
-        v != Cell.EMPTY && line.all { board[it] == v }
+        v != TttCell.EMPTY && line.all { board[it] == v }
     }
 
 // Minimax (O = AI maximizer, X = human minimizer)
-private fun minimax(board: List<Cell>, isMaximizing: Boolean, depth: Int): Int {
+private fun minimax(board: List<TttCell>, isMaximizing: Boolean, depth: Int): Int {
     return when (checkWinner(board)) {
-        Cell.O -> 10 - depth
-        Cell.X -> depth - 10
+        TttCell.O -> 10 - depth
+        TttCell.X -> depth - 10
         else -> {
-            if (board.none { it == Cell.EMPTY }) return 0
-            val moves = board.indices.filter { board[it] == Cell.EMPTY }
+            if (board.none { it == TttCell.EMPTY }) return 0
+            val moves = board.indices.filter { board[it] == TttCell.EMPTY }
             if (isMaximizing) {
                 moves.maxOf { i ->
-                    minimax(board.toMutableList().also { it[i] = Cell.O }, false, depth + 1)
+                    minimax(board.toMutableList().also { it[i] = TttCell.O }, false, depth + 1)
                 }
             } else {
                 moves.minOf { i ->
-                    minimax(board.toMutableList().also { it[i] = Cell.X }, true, depth + 1)
+                    minimax(board.toMutableList().also { it[i] = TttCell.X }, true, depth + 1)
                 }
             }
         }
     }
 }
 
-private fun bestMove(board: List<Cell>): Int {
+private fun bestMove(board: List<TttCell>): Int {
     var best = Int.MIN_VALUE
-    var move = board.indexOfFirst { it == Cell.EMPTY }
-    board.indices.filter { board[it] == Cell.EMPTY }.forEach { i ->
-        val score = minimax(board.toMutableList().also { it[i] = Cell.O }, false, 0)
+    var move = board.indexOfFirst { it == TttCell.EMPTY }
+    board.indices.filter { board[it] == TttCell.EMPTY }.forEach { i ->
+        val score = minimax(board.toMutableList().also { it[i] = TttCell.O }, false, 0)
         if (score > best) { best = score; move = i }
     }
     return move
 }
 
-private fun easyMove(board: List<Cell>): Int {
-    val empty = board.indices.filter { board[it] == Cell.EMPTY }
+private fun easyMove(board: List<TttCell>): Int {
+    val empty = board.indices.filter { board[it] == TttCell.EMPTY }
     // 60% random, 40% minimax — fàcil però no inútil
     return if ((0..9).random() < 6) empty.random() else bestMove(board)
 }
 
 @Composable
 fun TicTacToeGame(onGameComplete: (Int) -> Unit) {
-    var board by remember { mutableStateOf(List(9) { Cell.EMPTY }) }
+    var board by remember { mutableStateOf(List(9) { TttCell.EMPTY }) }
     var state by remember { mutableStateOf(GameState.PLAYING) }
     var humanTurn by remember { mutableStateOf(true) }
     var thinking by remember { mutableStateOf(false) }
@@ -114,7 +114,7 @@ fun TicTacToeGame(onGameComplete: (Int) -> Unit) {
             thinking = true
             delay(500)
             val move = if (difficulty == Difficulty.HARD) bestMove(board) else easyMove(board)
-            board = board.toMutableList().also { it[move] = Cell.O }
+            board = board.toMutableList().also { it[move] = TttCell.O }
             state = gameState(board)
             humanTurn = true
             thinking = false
@@ -132,7 +132,7 @@ fun TicTacToeGame(onGameComplete: (Int) -> Unit) {
     }
 
     fun reset() {
-        board = List(9) { Cell.EMPTY }
+        board = List(9) { TttCell.EMPTY }
         state = GameState.PLAYING
         humanTurn = true
         thinking = false
@@ -224,18 +224,18 @@ fun TicTacToeGame(onGameComplete: (Int) -> Unit) {
                     drawGrid()
                     currentWinLine?.let { drawWinLine(it, winLineAnim) }
                 }
-                // Cells
+                // TttCells
                 Column(modifier = Modifier.fillMaxSize()) {
                     for (row in 0..2) {
                         Row(modifier = Modifier.weight(1f)) {
                             for (col in 0..2) {
                                 val idx = row * 3 + col
-                                CellView(
+                                TttCellView(
                                     cell = board[idx],
-                                    enabled = humanTurn && board[idx] == Cell.EMPTY && state == GameState.PLAYING,
+                                    enabled = humanTurn && board[idx] == TttCell.EMPTY && state == GameState.PLAYING,
                                     modifier = Modifier.weight(1f).fillMaxHeight(),
                                     onClick = {
-                                        board = board.toMutableList().also { it[idx] = Cell.X }
+                                        board = board.toMutableList().also { it[idx] = TttCell.X }
                                         val newState = gameState(board)
                                         state = newState
                                         if (newState == GameState.PLAYING) {
@@ -300,14 +300,14 @@ private fun ScoreBox(label: String, value: Int, color: Color) {
 }
 
 @Composable
-private fun CellView(
-    cell: Cell,
+private fun TttCellView(
+    cell: TttCell,
     enabled: Boolean,
     modifier: Modifier,
     onClick: () -> Unit
 ) {
     val scale by animateFloatAsState(
-        targetValue = if (cell != Cell.EMPTY) 1f else 0f,
+        targetValue = if (cell != TttCell.EMPTY) 1f else 0f,
         animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy),
         label = "cellScale"
     )
@@ -318,13 +318,13 @@ private fun CellView(
         contentAlignment = Alignment.Center
     ) {
         when (cell) {
-            Cell.X -> Canvas(modifier = Modifier.fillMaxSize(0.6f * scale)) {
+            TttCell.X -> Canvas(modifier = Modifier.fillMaxSize(0.6f * scale)) {
                 val s = size.minDimension
                 val stroke = Stroke(width = s * 0.18f, cap = StrokeCap.Round)
                 drawLine(Color(0xFF1565C0), Offset(0f, 0f), Offset(s, s), s * 0.18f, StrokeCap.Round)
                 drawLine(Color(0xFF1565C0), Offset(s, 0f), Offset(0f, s), s * 0.18f, StrokeCap.Round)
             }
-            Cell.O -> Canvas(modifier = Modifier.fillMaxSize(0.6f * scale)) {
+            TttCell.O -> Canvas(modifier = Modifier.fillMaxSize(0.6f * scale)) {
                 val r = size.minDimension / 2f
                 drawCircle(
                     color = Color(0xFFB71C1C),
@@ -333,7 +333,7 @@ private fun CellView(
                     style = Stroke(width = r * 0.32f)
                 )
             }
-            Cell.EMPTY -> {}
+            TttCell.EMPTY -> {}
         }
     }
 }
