@@ -20,10 +20,7 @@ import androidx.compose.ui.unit.sp
 
 // HangmanGame està implementat a HangmanGame.kt
 
-@Composable
-fun ConnectDotsGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("⚫ Unir Punts", "Connecta els números", onGameComplete)
-}
+// ConnectDotsGame està implementat a ConnectDotsGame.kt
 
 @Composable
 fun PuzzleGame(onGameComplete: (Int) -> Unit) {
