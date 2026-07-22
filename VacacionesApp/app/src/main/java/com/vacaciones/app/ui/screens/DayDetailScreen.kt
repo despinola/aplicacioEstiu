@@ -98,9 +98,10 @@ fun DayDetailScreen(
 
             // Travel day banners
             when (day) {
-                1 -> { Spacer(modifier = Modifier.height(16.dp)); TravelDayBanner() }
-                2 -> { Spacer(modifier = Modifier.height(16.dp)); GrenobleDay2Banner() }
-                3 -> { Spacer(modifier = Modifier.height(16.dp)); MontBlancLagoDay3Banner() }
+                1  -> { Spacer(modifier = Modifier.height(16.dp)); TravelDayBanner() }
+                2  -> { Spacer(modifier = Modifier.height(16.dp)); GrenobleDay2Banner() }
+                3  -> { Spacer(modifier = Modifier.height(16.dp)); MontBlancLagoDay3Banner() }
+                12 -> { Spacer(modifier = Modifier.height(16.dp)); EclipseBanner() }
             }
 
             // Birthday banner

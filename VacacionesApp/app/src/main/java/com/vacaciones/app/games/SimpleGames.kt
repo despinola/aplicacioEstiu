@@ -16,10 +16,7 @@ import androidx.compose.ui.unit.sp
 
 // MemoryGame ahora está implementado en MemoryGame.kt
 
-@Composable
-fun WordSearchGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("🔍 Sopa de Lletres", "Troba les paraules", onGameComplete)
-}
+// WordSearchGame està implementat a WordSearchGame.kt
 
 // HangmanGame està implementat a HangmanGame.kt
 
