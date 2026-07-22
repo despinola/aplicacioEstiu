@@ -88,7 +88,7 @@ fun MemoryGame(onGameComplete: (Int) -> Unit) {
         ) {
             if (!gameFinished) {
                 Text(
-                    text = "🎴 Memory de Animales",
+                    text = "🎴 Memory d'Animals",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold
                 )
@@ -100,11 +100,11 @@ fun MemoryGame(onGameComplete: (Int) -> Unit) {
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     Text(
-                        text = "Movimientos: $moves",
+                        text = "Moviments: $moves",
                         style = MaterialTheme.typography.bodyLarge
                     )
                     Text(
-                        text = "Parejas: $matches/${animals.size}",
+                        text = "Parelles: $matches/${animals.size}",
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold
                     )
@@ -143,20 +143,20 @@ fun MemoryGame(onGameComplete: (Int) -> Unit) {
                 }
             } else {
                 Text(
-                    text = "🎉 ¡Completado!",
+                    text = "🎉 Completat!",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "En $moves movimientos",
+                    text = "En $moves moviments",
                     style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = if (moves <= 12) "🏆 ¡Increíble!"
-                           else if (moves <= 16) "🌟 ¡Muy bien!"
-                           else "👍 ¡Bien hecho!",
+                    text = if (moves <= 12) "🏆 Increïble!"
+                           else if (moves <= 16) "🌟 Molt bé!"
+                           else "👍 Ben fet!",
                     fontSize = 32.sp
                 )
             }

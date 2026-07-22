@@ -81,7 +81,7 @@ fun FindDifferencesGame(onGameComplete: (Int) -> Unit) {
         ) {
             if (!gameFinished) {
                 Text(
-                    text = "🔎 Encuentra las 7 Diferencias",
+                    text = "🔎 Troba les 7 Diferències",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
@@ -100,7 +100,7 @@ fun FindDifferencesGame(onGameComplete: (Int) -> Unit) {
                         color = MaterialTheme.colorScheme.primary
                     )
                     Text(
-                        text = "❌ Errores: $errors",
+                        text = "❌ Errors: $errors",
                         style = MaterialTheme.typography.bodyLarge,
                         color = if (errors > 3) MaterialTheme.colorScheme.error
                         else MaterialTheme.colorScheme.onSurfaceVariant
@@ -110,7 +110,7 @@ fun FindDifferencesGame(onGameComplete: (Int) -> Unit) {
                 Spacer(modifier = Modifier.height(6.dp))
 
                 Text(
-                    text = "Toca las diferencias en la imagen de la DERECHA",
+                    text = "Toca les diferències a la imatge de la DRETA",
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -124,12 +124,12 @@ fun FindDifferencesGame(onGameComplete: (Int) -> Unit) {
                     verticalAlignment = Alignment.Top
                 ) {
                     DiffImagePanel(
-                        label = "Imagen 1",
+                        label = "Imatge 1",
                         scene = leftImage,
                         interactable = false
                     )
                     DiffImagePanel(
-                        label = "Imagen 2 👆",
+                        label = "Imatge 2 👆",
                         scene = rightImage,
                         interactable = true,
                         found = found,
@@ -167,7 +167,7 @@ fun FindDifferencesGame(onGameComplete: (Int) -> Unit) {
                 }
             } else {
                 Text(
-                    text = "🎉 ¡Las encontraste todas!",
+                    text = "🎉 Les has trobat totes!",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
@@ -175,9 +175,9 @@ fun FindDifferencesGame(onGameComplete: (Int) -> Unit) {
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = when {
-                        errors == 0 -> "🏆 ¡Sin ningún error! ¡Campeón!"
-                        errors <= 3 -> "🌟 ¡Muy bien! Solo $errors errores"
-                        else -> "👍 ¡Lo conseguiste! $errors errores"
+                        errors == 0 -> "🏆 Sense cap error! Campió!"
+                        errors <= 3 -> "🌟 Molt bé! Només $errors errors"
+                        else -> "👍 Ho has aconseguit! $errors errors"
                     },
                     style = MaterialTheme.typography.titleMedium,
                     textAlign = TextAlign.Center

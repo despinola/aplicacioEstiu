@@ -60,7 +60,7 @@ fun MathGame(
                 Spacer(modifier = Modifier.height(24.dp))
 
                 Text(
-                    text = "¿Cuánto es?",
+                    text = "Quant és?",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
@@ -116,7 +116,7 @@ fun MathGame(
                 if (showResult) {
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = if (selectedAnswer == correctAnswer) "✅ ¡Correcto!" else "❌ Incorrecto",
+                        text = if (selectedAnswer == correctAnswer) "✅ Correcte!" else "❌ Incorrecte",
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         color = if (selectedAnswer == correctAnswer)
@@ -136,24 +136,24 @@ fun MathGame(
                             }
                         }
                     ) {
-                        Text(if (currentQuestion + 1 < totalQuestions) "Siguiente" else "Terminar")
+                        Text(if (currentQuestion + 1 < totalQuestions) "Següent" else "Acabar")
                     }
                 }
             } else {
                 Text(
-                    text = "¡Juego completado!",
+                    text = "Joc completat!",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Puntuación: $score de $totalQuestions",
+                    text = "Puntuació: $score de $totalQuestions",
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(16.dp)
                 )
                 Text(
-                    text = if (score == totalQuestions) "🎉 ¡Perfecto!"
-                           else if (score >= 3) "👍 ¡Bien hecho!"
-                           else "💪 ¡Sigue practicando!",
+                    text = if (score == totalQuestions) "🎉 Perfecte!"
+                           else if (score >= 3) "👍 Molt bé!"
+                           else "💪 Continua practicant!",
                     fontSize = 32.sp
                 )
             }

@@ -63,7 +63,7 @@ fun FlagsGame(
                 )
 
                 Text(
-                    text = "¿De qué país es esta bandera?",
+                    text = "De quin país és aquesta bandera?",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
@@ -113,24 +113,24 @@ fun FlagsGame(
                             }
                         }
                     ) {
-                        Text(if (currentQuestion + 1 < totalQuestions) "Siguiente" else "Terminar")
+                        Text(if (currentQuestion + 1 < totalQuestions) "Següent" else "Acabar")
                     }
                 }
             } else {
                 Text(
-                    text = "¡Juego completado!",
+                    text = "Joc completat!",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Puntuación: $score de $totalQuestions",
+                    text = "Puntuació: $score de $totalQuestions",
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(16.dp)
                 )
                 Text(
-                    text = if (score == totalQuestions) "🎉 ¡Perfecto!"
-                           else if (score >= 3) "👍 ¡Bien hecho!"
-                           else "💪 ¡Sigue practicando!",
+                    text = if (score == totalQuestions) "🎉 Perfecte!"
+                           else if (score >= 3) "👍 Molt bé!"
+                           else "💪 Continua practicant!",
                     fontSize = 32.sp
                 )
             }
@@ -141,37 +141,37 @@ fun FlagsGame(
 fun getFlagsForRegion(region: String): List<Flag> {
     val allFlags = listOf(
         // Europa
-        Flag("🇪🇸", "España", "Europa"),
-        Flag("🇫🇷", "Francia", "Europa"),
-        Flag("🇮🇹", "Italia", "Europa"),
-        Flag("🇩🇪", "Alemania", "Europa"),
-        Flag("🇬🇧", "Reino Unido", "Europa"),
+        Flag("🇪🇸", "Espanya", "Europa"),
+        Flag("🇫🇷", "França", "Europa"),
+        Flag("🇮🇹", "Itàlia", "Europa"),
+        Flag("🇩🇪", "Alemanya", "Europa"),
+        Flag("🇬🇧", "Regne Unit", "Europa"),
         Flag("🇵🇹", "Portugal", "Europa"),
-        Flag("🇳🇱", "Países Bajos", "Europa"),
-        Flag("🇧🇪", "Bélgica", "Europa"),
-        Flag("🇨🇭", "Suiza", "Europa"),
-        Flag("🇬🇷", "Grecia", "Europa"),
-        // América
-        Flag("🇺🇸", "Estados Unidos", "America"),
-        Flag("🇨🇦", "Canadá", "America"),
-        Flag("🇲🇽", "México", "America"),
+        Flag("🇳🇱", "Països Baixos", "Europa"),
+        Flag("🇧🇪", "Bèlgica", "Europa"),
+        Flag("🇨🇭", "Suïssa", "Europa"),
+        Flag("🇬🇷", "Grècia", "Europa"),
+        // Amèrica
+        Flag("🇺🇸", "Estats Units", "America"),
+        Flag("🇨🇦", "Canadà", "America"),
+        Flag("🇲🇽", "Mèxic", "America"),
         Flag("🇧🇷", "Brasil", "America"),
         Flag("🇦🇷", "Argentina", "America"),
-        Flag("🇨🇱", "Chile", "America"),
-        Flag("🇨🇴", "Colombia", "America"),
+        Flag("🇨🇱", "Xile", "America"),
+        Flag("🇨🇴", "Colòmbia", "America"),
         Flag("🇵🇪", "Perú", "America"),
-        // África
-        Flag("🇿🇦", "Sudáfrica", "Africa"),
-        Flag("🇪🇬", "Egipto", "Africa"),
-        Flag("🇰🇪", "Kenia", "Africa"),
-        Flag("🇳🇬", "Nigeria", "Africa"),
-        Flag("🇲🇦", "Marruecos", "Africa"),
-        // Asia
-        Flag("🇯🇵", "Japón", "Asia"),
-        Flag("🇨🇳", "China", "Asia"),
-        Flag("🇮🇳", "India", "Asia"),
-        Flag("🇰🇷", "Corea del Sur", "Asia"),
-        Flag("🇹🇭", "Tailandia", "Asia")
+        // Àfrica
+        Flag("🇿🇦", "Sud-àfrica", "Africa"),
+        Flag("🇪🇬", "Egipte", "Africa"),
+        Flag("🇰🇪", "Kenya", "Africa"),
+        Flag("🇳🇬", "Nigèria", "Africa"),
+        Flag("🇲🇦", "Marroc", "Africa"),
+        // Àsia
+        Flag("🇯🇵", "Japó", "Asia"),
+        Flag("🇨🇳", "Xina", "Asia"),
+        Flag("🇮🇳", "Índia", "Asia"),
+        Flag("🇰🇷", "Corea del Sud", "Asia"),
+        Flag("🇹🇭", "Tailàndia", "Asia")
     )
 
     return if (region == "Mundo") {

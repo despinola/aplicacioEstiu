@@ -96,7 +96,7 @@ fun SnakeGame(onGameComplete: (Int) -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "🐍 Juego de la Serpiente",
+                text = "🐍 Joc de la Serp",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold
             )
@@ -106,7 +106,7 @@ fun SnakeGame(onGameComplete: (Int) -> Unit) {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Text(
-                    text = "🍎 Puntos: $score",
+                    text = "🍎 Punts: $score",
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
@@ -215,7 +215,7 @@ fun SnakeGame(onGameComplete: (Int) -> Unit) {
                         Text("🐍", fontSize = 48.sp)
                         Spacer(modifier = Modifier.height(8.dp))
                         Button(onClick = { started = true }) {
-                            Text("¡Empezar!", fontWeight = FontWeight.Bold)
+                            Text("Començar!", fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -229,14 +229,14 @@ fun SnakeGame(onGameComplete: (Int) -> Unit) {
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(
-                                "💀 ¡Game Over!",
+                                "💀 Game Over!",
                                 color = Color.White,
                                 style = MaterialTheme.typography.titleLarge,
                                 fontWeight = FontWeight.Bold
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
-                                "Puntuación: $score",
+                                "Puntuació: $score",
                                 color = Color.White,
                                 style = MaterialTheme.typography.titleMedium
                             )
@@ -251,7 +251,7 @@ fun SnakeGame(onGameComplete: (Int) -> Unit) {
                                 gameFinished = false
                                 started = true
                             }) {
-                                Text("Reintentar")
+                                Text("Tornar a intentar")
                             }
                         }
                     }
@@ -288,7 +288,7 @@ fun SnakeGame(onGameComplete: (Int) -> Unit) {
 
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Come manzanas 🍎 y no choques con las paredes ni contigo mismo",
+                text = "Menja pomes 🍎 i no xoquis amb les parets ni amb tu mateix",
                 style = MaterialTheme.typography.bodySmall,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onSurfaceVariant

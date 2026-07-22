@@ -45,12 +45,12 @@ fun CalendarScreen(
                             )
                         }
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = "Hola, ${currentUser?.name}!")
+                        Text(text = "Hola, ${currentUser?.name}! 👋")
                     }
                 },
                 actions = {
                     IconButton(onClick = onLogout) {
-                        Icon(Icons.Default.ExitToApp, contentDescription = "Cerrar sesión")
+                        Icon(Icons.Default.ExitToApp, contentDescription = "Tancar sessió")
                     }
                 }
             )
@@ -63,7 +63,7 @@ fun CalendarScreen(
                 .padding(16.dp)
         ) {
             Text(
-                text = "Agosto 2026",
+                text = "Agost 2026",
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(bottom = 16.dp)

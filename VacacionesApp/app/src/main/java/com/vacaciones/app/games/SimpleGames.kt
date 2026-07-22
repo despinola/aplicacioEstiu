@@ -18,14 +18,14 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun WordSearchGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("🔍 Sopa de Letras", "Encuentra las palabras", onGameComplete)
+    PlaceholderGame("🔍 Sopa de Lletres", "Troba les paraules", onGameComplete)
 }
 
 // HangmanGame està implementat a HangmanGame.kt
 
 @Composable
 fun ConnectDotsGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("⚫ Unir Puntos", "Conecta los números", onGameComplete)
+    PlaceholderGame("⚫ Unir Punts", "Connecta els números", onGameComplete)
 }
 
 @Composable
@@ -35,34 +35,34 @@ fun PuzzleGame(onGameComplete: (Int) -> Unit) {
 
 @Composable
 fun AnimalTriviaGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("🦁 Trivia de Animales", "¿Cuánto sabes?", onGameComplete)
+    PlaceholderGame("🦁 Trivia d'Animals", "Quant en saps?", onGameComplete)
 }
 
 // FindDifferencesGame está implementado en FindDifferencesGame.kt
 
 @Composable
 fun MazeGame(level: Int = 1, onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("🌀 Laberinto ${if (level > 1) "Nivel $level" else ""}", "Encuentra la salida", onGameComplete)
+    PlaceholderGame("🌀 Laberint ${if (level > 1) "Nivell $level" else ""}", "Troba la sortida", onGameComplete)
 }
 
 @Composable
 fun ColorGuessGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("🎨 Adivina el Color", "¿Qué color es?", onGameComplete)
+    PlaceholderGame("🎨 Endevina el Color", "Quin color és?", onGameComplete)
 }
 
 @Composable
 fun SequenceGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("🔢 Secuencias", "Completa la secuencia", onGameComplete)
+    PlaceholderGame("🔢 Seqüències", "Completa la seqüència", onGameComplete)
 }
 
 @Composable
 fun SimonSaysGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("🎵 Simon Dice", "Repite la secuencia", onGameComplete)
+    PlaceholderGame("🎵 Simon Diu", "Repeteix la seqüència", onGameComplete)
 }
 
 @Composable
 fun WordChainGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("🔗 Palabras Encadenadas", "Encadena palabras", onGameComplete)
+    PlaceholderGame("🔗 Paraules Encadenades", "Encadena paraules", onGameComplete)
 }
 
 @Composable
@@ -72,34 +72,34 @@ fun TangramGame(onGameComplete: (Int) -> Unit) {
 
 @Composable
 fun SportsQuizGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("⚽ Quiz de Deportes", "¿Cuánto sabes?", onGameComplete)
+    PlaceholderGame("⚽ Quiz d'Esports", "Quant en saps?", onGameComplete)
 }
 
 @Composable
 fun SortNumbersGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("📊 Ordena Números", "Del menor al mayor", onGameComplete)
+    PlaceholderGame("📊 Ordena Números", "Del menor al major", onGameComplete)
 }
 
 // TicTacToeGame està implementat a TicTacToeGame.kt
 
 @Composable
 fun RiddlesGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("🤔 Adivinanzas", "Resuelve las adivinanzas", onGameComplete)
+    PlaceholderGame("🤔 Endevinalles", "Resol les endevinalles", onGameComplete)
 }
 
 @Composable
 fun MatchImagesGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("🖼️ Empareja Imágenes", "Encuentra las parejas", onGameComplete)
+    PlaceholderGame("🖼️ Aparella Imatges", "Troba les parelles", onGameComplete)
 }
 
 @Composable
 fun DisneyQuizGame(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("🏰 Quiz Disney", "Películas y personajes", onGameComplete)
+    PlaceholderGame("🏰 Quiz Disney", "Pel·lícules i personatges", onGameComplete)
 }
 
 @Composable
 fun SurpriseGameFinale(onGameComplete: (Int) -> Unit) {
-    PlaceholderGame("🎉 ¡SORPRESA FINAL!", "¡Has completado todo el mes!", onGameComplete)
+    PlaceholderGame("🎉 SORPRESA FINAL!", "Has completat tot el mes!", onGameComplete)
 }
 
 @Composable
@@ -154,11 +154,11 @@ fun PlaceholderGame(
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Completar Juego")
+                    Text("Completar Joc")
                 }
             } else {
                 Text(
-                    text = "✅ ¡Completado!",
+                    text = "✅ Completat!",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.tertiary

@@ -60,7 +60,7 @@ fun CapitalsGame(
                 )
 
                 Text(
-                    text = "¿Cuál es la capital de ${currentCapital.country}?",
+                    text = "Quina és la capital de ${currentCapital.country}?",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
@@ -110,24 +110,24 @@ fun CapitalsGame(
                             }
                         }
                     ) {
-                        Text(if (currentQuestion + 1 < totalQuestions) "Siguiente" else "Terminar")
+                        Text(if (currentQuestion + 1 < totalQuestions) "Següent" else "Acabar")
                     }
                 }
             } else {
                 Text(
-                    text = "¡Juego completado!",
+                    text = "Joc completat!",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Puntuación: $score de $totalQuestions",
+                    text = "Puntuació: $score de $totalQuestions",
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(16.dp)
                 )
                 Text(
-                    text = if (score == totalQuestions) "🎉 ¡Perfecto!"
-                           else if (score >= 3) "👍 ¡Bien hecho!"
-                           else "💪 ¡Sigue practicando!",
+                    text = if (score == totalQuestions) "🎉 Perfecte!"
+                           else if (score >= 3) "👍 Molt bé!"
+                           else "💪 Continua practicant!",
                     fontSize = 32.sp
                 )
             }
@@ -138,34 +138,34 @@ fun CapitalsGame(
 fun getCapitalsForRegion(region: String): List<CountryCapital> {
     val allCapitals = listOf(
         // Europa
-        CountryCapital("España", "Madrid", "Europa"),
-        CountryCapital("Francia", "París", "Europa"),
-        CountryCapital("Italia", "Roma", "Europa"),
-        CountryCapital("Alemania", "Berlín", "Europa"),
-        CountryCapital("Reino Unido", "Londres", "Europa"),
+        CountryCapital("Espanya", "Madrid", "Europa"),
+        CountryCapital("França", "París", "Europa"),
+        CountryCapital("Itàlia", "Roma", "Europa"),
+        CountryCapital("Alemanya", "Berlín", "Europa"),
+        CountryCapital("Regne Unit", "Londres", "Europa"),
         CountryCapital("Portugal", "Lisboa", "Europa"),
-        CountryCapital("Países Bajos", "Ámsterdam", "Europa"),
-        CountryCapital("Bélgica", "Bruselas", "Europa"),
-        CountryCapital("Suiza", "Berna", "Europa"),
-        CountryCapital("Grecia", "Atenas", "Europa"),
-        CountryCapital("Austria", "Viena", "Europa"),
-        CountryCapital("Suecia", "Estocolmo", "Europa"),
-        // América
-        CountryCapital("Estados Unidos", "Washington D.C.", "America"),
-        CountryCapital("Canadá", "Ottawa", "America"),
-        CountryCapital("México", "Ciudad de México", "America"),
-        CountryCapital("Brasil", "Brasilia", "America"),
+        CountryCapital("Països Baixos", "Amsterdam", "Europa"),
+        CountryCapital("Bèlgica", "Brussel·les", "Europa"),
+        CountryCapital("Suïssa", "Berna", "Europa"),
+        CountryCapital("Grècia", "Atenes", "Europa"),
+        CountryCapital("Àustria", "Viena", "Europa"),
+        CountryCapital("Suècia", "Estocolm", "Europa"),
+        // Amèrica
+        CountryCapital("Estats Units", "Washington D.C.", "America"),
+        CountryCapital("Canadà", "Ottawa", "America"),
+        CountryCapital("Mèxic", "Ciutat de Mèxic", "America"),
+        CountryCapital("Brasil", "Brasília", "America"),
         CountryCapital("Argentina", "Buenos Aires", "America"),
-        CountryCapital("Chile", "Santiago", "America"),
-        CountryCapital("Colombia", "Bogotá", "America"),
+        CountryCapital("Xile", "Santiago", "America"),
+        CountryCapital("Colòmbia", "Bogotà", "America"),
         CountryCapital("Perú", "Lima", "America"),
-        // Asia
-        CountryCapital("Japón", "Tokio", "Asia"),
-        CountryCapital("China", "Pekín", "Asia"),
-        CountryCapital("India", "Nueva Delhi", "Asia"),
-        CountryCapital("Corea del Sur", "Seúl", "Asia"),
-        CountryCapital("Tailandia", "Bangkok", "Asia"),
-        CountryCapital("Vietnam", "Hanói", "Asia")
+        // Àsia
+        CountryCapital("Japó", "Tòquio", "Asia"),
+        CountryCapital("Xina", "Pequín", "Asia"),
+        CountryCapital("Índia", "Nova Delhi", "Asia"),
+        CountryCapital("Corea del Sud", "Seül", "Asia"),
+        CountryCapital("Tailàndia", "Bangkok", "Asia"),
+        CountryCapital("Vietnam", "Hanoi", "Asia")
     )
 
     return if (region == "Mundo") {

@@ -274,7 +274,7 @@ fun TicTacToeGame(onGameComplete: (Int) -> Unit) {
 
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "Tu juegas com ❌ · La IA juga com ⭕",
+                text = "Tu jugues com ❌ · La IA juga com ⭕",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center

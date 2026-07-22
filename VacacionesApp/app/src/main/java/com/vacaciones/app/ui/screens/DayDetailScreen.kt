@@ -34,13 +34,13 @@ fun DayDetailScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Día $day de Agosto",
+                        text = "Dia $day d'Agost",
                         fontWeight = FontWeight.Bold
                     )
                 },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Volver")
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Tornar")
                     }
                 }
             )
@@ -105,7 +105,7 @@ fun DayDetailScreen(
 
             // Game section
             Text(
-                text = "🎮 Juego del día",
+                text = "🎮 Joc del dia",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(bottom = 8.dp)
@@ -122,7 +122,7 @@ fun DayDetailScreen(
 
             // Activity checklist
             Text(
-                text = "📝 ¿Qué has hecho hoy?",
+                text = "📝 Què has fet avui?",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(bottom = 16.dp)
@@ -130,25 +130,25 @@ fun DayDetailScreen(
 
             currentActivity?.let { activity ->
                 ChecklistItem(
-                    text = "📖 He leído",
+                    text = "📖 He llegit",
                     checked = activity.hasRead,
                     onCheckedChange = { viewModel.updateActivity(hasRead = it) }
                 )
 
                 ChecklistItem(
-                    text = "🪥 Me he lavado los dientes",
+                    text = "🪥 M'he rentat les dents",
                     checked = activity.hasBrushedTeeth,
                     onCheckedChange = { viewModel.updateActivity(hasBrushedTeeth = it) }
                 )
 
                 ChecklistItem(
-                    text = "📺 He visto la tele",
+                    text = "📺 He vist la tele",
                     checked = activity.hasWatchedTV,
                     onCheckedChange = { viewModel.updateActivity(hasWatchedTV = it) }
                 )
 
                 ChecklistItem(
-                    text = "🏊 He ido a la piscina",
+                    text = "🏊 He anat a la piscina",
                     checked = activity.hasSwimmed,
                     onCheckedChange = { viewModel.updateActivity(hasSwimmed = it) }
                 )
@@ -159,7 +159,7 @@ fun DayDetailScreen(
                 var notes by remember(activity.notes) { mutableStateOf(activity.notes) }
 
                 Text(
-                    text = "✍️ Notas del día",
+                    text = "✍️ Notes del dia",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(bottom = 8.dp)
@@ -169,7 +169,7 @@ fun DayDetailScreen(
                     value = notes,
                     onValueChange = { notes = it },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("¿Qué ha pasado hoy?") },
+                    placeholder = { Text("Què ha passat avui?") },
                     minLines = 3,
                     maxLines = 5
                 )
@@ -180,7 +180,7 @@ fun DayDetailScreen(
                     onClick = { viewModel.updateActivity(notes = notes) },
                     modifier = Modifier.align(Alignment.End)
                 ) {
-                    Text("Guardar notas")
+                    Text("Desar notes")
                 }
             }
 
