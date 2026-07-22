@@ -5,10 +5,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,9 +28,11 @@ import java.time.LocalDate
 fun CalendarScreen(
     viewModel: AppViewModel,
     onDayClick: (Int) -> Unit,
-    onLogout: () -> Unit
+    onLogout: () -> Unit,
+    onPointsClick: () -> Unit = {}
 ) {
     val currentUser by viewModel.currentUser.collectAsState()
+    val totalPoints by viewModel.currentUserTotalPoints.collectAsState()
 
     Scaffold(
         topBar = {
@@ -45,10 +48,25 @@ fun CalendarScreen(
                             )
                         }
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = "Hola, ${currentUser?.name}! 👋")
+                        Column {
+                            Text(text = "Hola, ${currentUser?.name}! 👋")
+                            Text(
+                                text = "$totalPoints ⭐",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = if (totalPoints >= 0) Color(0xFF2E7D32) else Color(0xFFB71C1C),
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
                     }
                 },
                 actions = {
+                    IconButton(onClick = onPointsClick) {
+                        Icon(
+                            Icons.Default.Star,
+                            contentDescription = "Classificació",
+                            tint = Color(0xFFFF8F00)
+                        )
+                    }
                     IconButton(onClick = onLogout) {
                         Icon(Icons.Default.ExitToApp, contentDescription = "Tancar sessió")
                     }

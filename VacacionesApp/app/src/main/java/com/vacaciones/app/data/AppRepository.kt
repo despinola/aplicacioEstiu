@@ -18,6 +18,10 @@ class AppRepository(
         return dailyActivityDao.getActivitiesForMonth(userId, month, year)
     }
 
+    fun getAllActivitiesForMonth(month: Int, year: Int): Flow<List<DailyActivity>> {
+        return dailyActivityDao.getAllActivitiesForMonth(month, year)
+    }
+
     suspend fun insertOrUpdateActivity(activity: DailyActivity) {
         val existing = dailyActivityDao.getActivityForDay(
             activity.userId,

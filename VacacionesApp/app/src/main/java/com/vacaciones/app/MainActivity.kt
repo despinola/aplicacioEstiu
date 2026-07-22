@@ -11,7 +11,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -24,6 +23,7 @@ import com.vacaciones.app.ui.AppViewModelFactory
 import com.vacaciones.app.ui.screens.CalendarScreen
 import com.vacaciones.app.ui.screens.DayDetailScreen
 import com.vacaciones.app.ui.screens.LoginScreen
+import com.vacaciones.app.ui.screens.PointsScreen
 import com.vacaciones.app.ui.theme.VacacionesAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -80,6 +80,9 @@ fun VacacionesApp(viewModel: AppViewModel) {
                     navController.navigate("login") {
                         popUpTo("calendar") { inclusive = true }
                     }
+                },
+                onPointsClick = {
+                    navController.navigate("points")
                 }
             )
         }
@@ -91,6 +94,15 @@ fun VacacionesApp(viewModel: AppViewModel) {
             val day = backStackEntry.arguments?.getInt("day") ?: 1
             DayDetailScreen(
                 day = day,
+                viewModel = viewModel,
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable("points") {
+            PointsScreen(
                 viewModel = viewModel,
                 onBackClick = {
                     navController.popBackStack()

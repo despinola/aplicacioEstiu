@@ -15,6 +15,9 @@ interface DailyActivityDao {
     @Query("SELECT * FROM daily_activities WHERE userId = :userId AND month = :month AND year = :year")
     fun getActivitiesForMonth(userId: Int, month: Int, year: Int): Flow<List<DailyActivity>>
 
+    @Query("SELECT * FROM daily_activities WHERE month = :month AND year = :year")
+    fun getAllActivitiesForMonth(month: Int, year: Int): Flow<List<DailyActivity>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(activity: DailyActivity)
 

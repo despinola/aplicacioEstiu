@@ -6,9 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.vacaciones.app.data.AppRepository
 import com.vacaciones.app.data.DailyActivity
 import com.vacaciones.app.data.User
+import com.vacaciones.app.data.calculatePoints
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class AppViewModel(private val repository: AppRepository) : ViewModel() {
@@ -21,6 +25,27 @@ class AppViewModel(private val repository: AppRepository) : ViewModel() {
 
     private val _currentActivity = MutableStateFlow<DailyActivity?>(null)
     val currentActivity: StateFlow<DailyActivity?> = _currentActivity.asStateFlow()
+
+    // Punts totals de l'usuari actual (suma de tots els dies del mes)
+    val currentUserTotalPoints: StateFlow<Int> = repository
+        .getAllActivitiesForMonth(8, 2026)
+        .map { activities ->
+            val userId = _currentUser.value?.id ?: return@map 0
+            activities.filter { it.userId == userId }.sumOf { it.calculatePoints() }
+        }
+        .stateIn(viewModelScope, SharingStarted.Lazily, 0)
+
+    // Rànquing de tots els usuaris amb els seus punts totals
+    val allUsersPoints: StateFlow<List<Pair<User, Int>>> = repository
+        .getAllActivitiesForMonth(8, 2026)
+        .map { activities ->
+            val actsByUser = activities.groupBy { it.userId }
+            _users.value.map { user ->
+                val pts = actsByUser[user.id]?.sumOf { it.calculatePoints() } ?: 0
+                user to pts
+            }.sortedByDescending { it.second }
+        }
+        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     init {
         viewModelScope.launch {
@@ -60,7 +85,15 @@ class AppViewModel(private val repository: AppRepository) : ViewModel() {
         notes: String? = null,
         gameCompleted: Boolean? = null,
         gameScore: Int? = null,
-        photoUri: String? = null
+        photoUri: String? = null,
+        tvTime: Int? = null,
+        tabletTime: Int? = null,
+        hasSetTable: Boolean? = null,
+        hasWashedDishes: Boolean? = null,
+        hasPreparedBreakfast: Boolean? = null,
+        hasSunset: Boolean? = null,
+        hasShootingStars: Boolean? = null,
+        hasEclipse: Boolean? = null
     ) {
         viewModelScope.launch {
             _currentActivity.value?.let { activity ->
@@ -72,7 +105,15 @@ class AppViewModel(private val repository: AppRepository) : ViewModel() {
                     notes = notes ?: activity.notes,
                     gameCompleted = gameCompleted ?: activity.gameCompleted,
                     gameScore = gameScore ?: activity.gameScore,
-                    photoUri = photoUri ?: activity.photoUri
+                    photoUri = photoUri ?: activity.photoUri,
+                    tvTime = tvTime ?: activity.tvTime,
+                    tabletTime = tabletTime ?: activity.tabletTime,
+                    hasSetTable = hasSetTable ?: activity.hasSetTable,
+                    hasWashedDishes = hasWashedDishes ?: activity.hasWashedDishes,
+                    hasPreparedBreakfast = hasPreparedBreakfast ?: activity.hasPreparedBreakfast,
+                    hasSunset = hasSunset ?: activity.hasSunset,
+                    hasShootingStars = hasShootingStars ?: activity.hasShootingStars,
+                    hasEclipse = hasEclipse ?: activity.hasEclipse
                 )
                 repository.insertOrUpdateActivity(updated)
                 _currentActivity.value = updated
