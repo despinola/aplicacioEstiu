@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -26,26 +26,26 @@ class AppViewModel(private val repository: AppRepository) : ViewModel() {
     private val _currentActivity = MutableStateFlow<DailyActivity?>(null)
     val currentActivity: StateFlow<DailyActivity?> = _currentActivity.asStateFlow()
 
+    private val _allMonthActivities = repository.getAllActivitiesForMonth(8, 2026)
+
     // Punts totals de l'usuari actual (suma de tots els dies del mes)
-    val currentUserTotalPoints: StateFlow<Int> = repository
-        .getAllActivitiesForMonth(8, 2026)
-        .map { activities ->
-            val userId = _currentUser.value?.id ?: return@map 0
-            activities.filter { it.userId == userId }.sumOf { it.calculatePoints() }
-        }
-        .stateIn(viewModelScope, SharingStarted.Lazily, 0)
+    val currentUserTotalPoints: StateFlow<Int> = combine(
+        _currentUser, _allMonthActivities
+    ) { user, activities ->
+        val userId = user?.id ?: return@combine 0
+        activities.filter { it.userId == userId }.sumOf { it.calculatePoints() }
+    }.stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     // Rànquing de tots els usuaris amb els seus punts totals
-    val allUsersPoints: StateFlow<List<Pair<User, Int>>> = repository
-        .getAllActivitiesForMonth(8, 2026)
-        .map { activities ->
-            val actsByUser = activities.groupBy { it.userId }
-            _users.value.map { user ->
-                val pts = actsByUser[user.id]?.sumOf { it.calculatePoints() } ?: 0
-                user to pts
-            }.sortedByDescending { it.second }
-        }
-        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+    val allUsersPoints: StateFlow<List<Pair<User, Int>>> = combine(
+        _users, _allMonthActivities
+    ) { users, activities ->
+        val actsByUser = activities.groupBy { it.userId }
+        users.map { user ->
+            val pts = actsByUser[user.id]?.sumOf { it.calculatePoints() } ?: 0
+            user to pts
+        }.sortedByDescending { it.second }
+    }.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     init {
         viewModelScope.launch {
